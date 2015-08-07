@@ -1,11 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>SAML Failure</title>
+</head>
+<body>
 {% if error %}
-    {{ error.getMessage() }}
-    <hr/>
-    <pre>{{ error.getTraceAsString() }}</pre>
-    {% if app.environment == 'dev' %}
-        <hr>
-        {{ dump(error.getToken()) }}
-    {% endif %}
+	{{ error.getMessage() }}
+	<hr/>
+	<pre>{{ error.getTraceAsString() }}</pre>
+	<ul>
+		<li>username: {{ error.username }}</li>
+		<li>isAuthenticated: {{ error.isAuthenticated ? 'true' : 'false' }}</li>
+	</ul>
 {% else %}
-    <p>Some error occurred but went out of the scope</p>
+	<p>Some error occurred but went out of the scope</p>
 {% endif %}
+</body>
+</html>
