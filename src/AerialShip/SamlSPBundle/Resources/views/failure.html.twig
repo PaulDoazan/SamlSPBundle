@@ -9,10 +9,6 @@
 	{{ error.getMessage() }}
 	<hr/>
 	<pre>{{ error.getTraceAsString() }}</pre>
-	<ul>
-		<li>username: {{ error.username }}</li>
-		<li>isAuthenticated: {{ error.isAuthenticated ? 'true' : 'false' }}</li>
-	</ul>
 {% else %}
 	<p>Some error occurred but went out of the scope</p>
 {% endif %}
