@@ -54,6 +54,7 @@ class Discovery implements RelyingPartyInterface
      */
     public function manage(Request $request)
     {
+        dump('in manage Discovery.php');
         if (!$this->supports($request)) {
             throw new \InvalidArgumentException('Unsupported request');
         }
