@@ -149,6 +149,7 @@ class AssertionConsumer implements RelyingPartyInterface
 
     protected function validateState(Response $response)
     {
+        dump($response);
         if ($response->getInResponseTo()) {
             $requestState = $this->requestStore->get($response->getInResponseTo());
             if (!$requestState) {
