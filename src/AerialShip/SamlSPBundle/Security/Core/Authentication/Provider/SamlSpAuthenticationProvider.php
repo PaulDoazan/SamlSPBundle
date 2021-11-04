@@ -119,18 +119,19 @@ class SamlSpAuthenticationProvider implements AuthenticationProviderInterface
     protected function createAuthenticatedToken(SamlSpInfo $samlInfo, array $attributes, array $roles, $user)
     {
         dump(createAuthenticatedToken);
-        die();
         if ($user instanceof UserInterface && $this->userChecker) {
             $this->userChecker->checkPostAuth($user);
         }
         if (!in_array('ROLE_USER', $roles)) {
             $roles[] = 'ROLE_USER';
         }
+
         $newToken = new SamlSpToken($this->providerKey, $roles);
         $newToken->setUser($user);
         $newToken->setAttributes($attributes);
         $newToken->setSamlSpInfo($samlInfo);
         $newToken->setAuthenticated(true);
+        dump($newToken);
         
         return $newToken;
     }
