@@ -161,12 +161,6 @@ class SamlSpAuthenticationProvider implements AuthenticationProviderInterface
         if (false == $user instanceof UserInterface) {
             throw new \RuntimeException('User provider did not return an implementation of user interface.');
         }
-        
-        // Custom trick
-        //if(ClassUtils::getClass($user) == 'eduMedia\CommercialBundle\Entity\ClientIdentity') $user=$user->getClient();
-        /*dump(strpos(get_class($user), 'eduMedia\CommercialBundle\Entity\ClientIdentity'), ClassUtils::getClass($user) == 'eduMedia\CommercialBundle\Entity\ClientIdentity', ClassUtils::getClass($user));
-        die();
-        if (strpos(get_class($user), 'eduMedia\CommercialBundle\Entity\ClientIdentity')) $user=$user->getClient();*/
 
         return $user;
     }
