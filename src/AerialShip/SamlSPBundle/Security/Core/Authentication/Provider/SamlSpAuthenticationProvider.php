@@ -87,12 +87,8 @@ class SamlSpAuthenticationProvider implements AuthenticationProviderInterface
     protected function getUser(SamlSpToken $token)
     {
         if ($token->getUser() instanceof UserInterface) {
-            dump("getUser");
-            die();
             $result = $token->getUser();
         } else if ($this->userProvider) {
-            dump("getUserProvider");
-            die();
             $result = $this->getProviderUser($token);
         } else {
             $result = $this->getDefaultUser($token);
@@ -167,6 +163,8 @@ class SamlSpAuthenticationProvider implements AuthenticationProviderInterface
         // Custom trick
         if (get_class($user) == 'eduMedia\CommercialBundle\Entity\ClientIdentity') $user=$user->getClient();
 
+        dump(get_class($user) == 'eduMedia\CommercialBundle\Entity\ClientIdentity', $user);
+        die();
         return $user;
     }
 
@@ -176,8 +174,6 @@ class SamlSpAuthenticationProvider implements AuthenticationProviderInterface
      */
     private function getDefaultUser(SamlSpToken $token)
     {
-        dump("getDefaultUser");
-        die();
         $nameID = $token && $token->getSamlSpInfo()->getNameID() && $token->getSamlSpInfo()->getNameID()->getValue() ? $token->getSamlSpInfo()->getNameID()->getValue() : 'anon.';
         $result = new User($nameID, '', array('ROLE_USER'));
         return $result;
