@@ -163,7 +163,8 @@ class SamlSpAuthenticationProvider implements AuthenticationProviderInterface
         }
         
         // Custom trick
-        if(ClassUtils::getClass($user) == 'eduMedia\CommercialBundle\Entity\ClientIdentity') $user=$user->getClient();
+        //if(ClassUtils::getClass($user) == 'eduMedia\CommercialBundle\Entity\ClientIdentity') $user=$user->getClient();
+        if (strpos(get_class($user), 'eduMedia\CommercialBundle\Entity\ClientIdentity')) $user=$user->getClient();
 
         return $user;
     }
