@@ -13,6 +13,7 @@ use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
 use Symfony\Component\Security\Core\User\User;
 use Symfony\Component\Security\Core\User\UserCheckerInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Doctrine\Common\Util\ClassUtils;
 
 class SamlSpAuthenticationProvider implements AuthenticationProviderInterface
 {
@@ -162,7 +163,7 @@ class SamlSpAuthenticationProvider implements AuthenticationProviderInterface
         }
         
         // Custom trick
-        if(\Doctrine\Common\Util\ClassUtils::getClass($user) == 'eduMedia\CommercialBundle\Entity\ClientIdentity') $user=$user->getClient();
+        if(ClassUtils::getClass($user) == 'eduMedia\CommercialBundle\Entity\ClientIdentity') $user=$user->getClient();
         //if (strpos(get_class($user), 'eduMedia\CommercialBundle\Entity\ClientIdentity')) $user=$user->getClient();
 
         return $user;
