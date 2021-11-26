@@ -153,6 +153,7 @@ class SamlSpAuthenticationProvider implements AuthenticationProviderInterface
             if (false == $this->createIfNotExists) {
                 throw $ex;
             }
+
             $user = $this->userProvider->createUserFromSamlInfo($token->getSamlSpInfo());
         }
 
@@ -163,11 +164,6 @@ class SamlSpAuthenticationProvider implements AuthenticationProviderInterface
         // Custom trick
         if (strpos(get_class($user), 'eduMedia\CommercialBundle\Entity\ClientIdentity')) $user=$user->getClient();
 
-        dump(get_class($user), get_class($user) == 'eduMedia\CommercialBundle\Entity\ClientIdentity', $user);
-        if($user->getClient()){
-            dump($user->getClient());
-        }
-        die();
         return $user;
     }
 
