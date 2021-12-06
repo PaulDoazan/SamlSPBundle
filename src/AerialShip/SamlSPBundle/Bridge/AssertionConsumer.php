@@ -139,7 +139,7 @@ class AssertionConsumer implements RelyingPartyInterface
         if (!$metaProvider) {
             throw new \RuntimeException('Unknown issuer '.$response->getIssuer());
         }
-        $this->validateState($response);
+        //$this->validateState($response);
         $this->validateStatus($response);
         $this->validateResponseSignature($metaProvider, $response);
         foreach ($response->getAllAssertions() as $assertion) {
